@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: gitlab-mirror
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: gitlab-mirror
+            image: localhost/grandtest/mirror:0.0.1
+            imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
